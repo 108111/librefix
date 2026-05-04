@@ -44,5 +44,5 @@ with open("adb_bundle.py", "w") as out:
             out.write(f'    "{chunk}"\n')
         out.write(")\n\n")
 
-print("✅ Created adb_bundle.py")
+print("OK - Created adb_bundle.py")
 print(f"   Embedded: {', '.join(FILES.values())}")
