@@ -39,7 +39,7 @@ def build():
 
     if result.returncode == 0:
         size = os.path.getsize("dist/LibreFix.exe") / (1024*1024)
-        print(f"\n✅ Build successful!")
+        print(f"\nOK - Build successful!")
         print(f"   dist/LibreFix.exe ({size:.1f} MB)")
         print("\nTo release:")
         print("   git tag v1.0.0")
