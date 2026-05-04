@@ -1,0 +1,58 @@
+name: Build and Release LibreFix
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyinstaller
+
+      - name: Download ADB platform tools
+        run: |
+          Invoke-WebRequest -Uri "https://dl.google.com/android/repository/platform-tools-latest-windows.zip" -OutFile "platform-tools.zip"
+          Expand-Archive -Path "platform-tools.zip" -DestinationPath "."
+          Copy-Item "platform-tools\adb.exe" "."
+          Copy-Item "platform-tools\AdbWinApi.dll" "."
+          Copy-Item "platform-tools\AdbWinUsbApi.dll" "."
+        shell: pwsh
+
+      - name: Embed ADB
+        run: python embed_adb.py
+
+      - name: Build executable
+        run: python build.py
+
+      - name: Upload to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/LibreFix.exe
+          body: |
+            ## LibreFix
+
+            **One-click fix for FreeStyle Libre Bluetooth on Fairphone after Android 15 update.**
+
+            ### How to use
+            1. Enable USB Debugging on your phone (Settings → About Phone → tap Build Number 7 times → Developer Options → USB Debugging)
+            2. Connect your phone via USB
+            3. Run LibreFix.exe
+            4. Tap Allow when your phone asks about USB Debugging
+            5. Click Fix My Libre
+
+            No installation required. ADB is bundled inside the .exe.
+
+            See the [README](../../blob/main/README.md) for full details.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
