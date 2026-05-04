@@ -14,7 +14,7 @@ After the March/April 2026 Android 15 update on Fairphone 4 and 5, FreeStyle Lib
 
 **Use entirely at your own risk.** This is not affiliated with Abbott, FreeStyle, or Fairphone. It is a community tool built by people trying to help other people.
 
-If you are not comfortable running an untested .exe, the manual ADB commands that we know work are documented in the [Reddit post](https://www.reddit.com) *(update with link)* and you can run those directly instead.
+If you are not comfortable running an untested .exe, the manual ADB commands that we know work are documented in the [Reddit post](https://www.reddit.com/r/fairphone/comments/1t2zz7w/fix_freestyle_libre_23_bluetooth_not_working_on/) and you can run those directly instead.
 
 ---
 
