@@ -16,9 +16,9 @@ import base64
 import os
 
 FILES = {
-    "ADB_EXE":          "adb.exe",
-    "ADBWINAPI_DLL":    "AdbWinApi.dll",
-    "ADBWINUSBAPI_DLL": "AdbWinUsbApi.dll",
+    "ADB_EXE":          "/usr/bin/adb",
+#    "ADBWINAPI_DLL":    "AdbWinApi.dll",
+#    "ADBWINUSBAPI_DLL": "AdbWinUsbApi.dll",
 }
 
 missing = [f for f in FILES.values() if not os.path.exists(f)]

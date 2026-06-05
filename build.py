@@ -38,7 +38,7 @@ def build():
     result = subprocess.run(cmd)
 
     if result.returncode == 0:
-        size = os.path.getsize("dist/LibreFix.exe") / (1024*1024)
+        size = os.path.getsize("dist/LibreFix") / (1024*1024)
         print(f"\nOK - Build successful!")
         print(f"   dist/LibreFix.exe ({size:.1f} MB)")
         print("\nTo release:")
