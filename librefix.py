@@ -37,6 +37,8 @@ LIBRELINK_PACKAGES = [
     "com.freestylelibre.app.au",
     "com.freestylelibre.app.ca",
     "com.abbott.librelink",
+    "com.freestylelibre3.app.de",
+    "tk.glucodata"                   # juggluco
 ]
 
 TMP_DIR = None
@@ -57,7 +59,7 @@ def get_adb_path():
             ]:
                 with open(os.path.join(TMP_DIR, name), "wb") as f:
                     f.write(base64.b64decode(data))
-        return os.path.join(TMP_DIR, "adb.exe")
+        return os.path.join(TMP_DIR, "adb")
     script_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
     for name in ["adb.exe", "adb"]:
         path = os.path.join(script_dir, name)
@@ -72,7 +74,7 @@ def run_adb(args):
         result = subprocess.run(
             [adb] + args,
             capture_output=True, text=True, timeout=15,
-            creationflags=CREATE_NO_WINDOW
+          #  creationflags=CREATE_NO_WINDOW
         )
         return result.stdout.strip(), result.stderr.strip(), result.returncode
     except subprocess.TimeoutExpired:
